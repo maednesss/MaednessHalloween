@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -10,7 +9,9 @@
   <title>MÆDNESS® — 31/10</title>
 
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     html, body {
       margin: 0;
@@ -35,200 +36,165 @@
       object-position: center;
     }
 
-    .bat-layer {
+    .bats {
       position: fixed;
       inset: 0;
       overflow: hidden;
       pointer-events: none;
-      z-index: 10;
+      z-index: 5;
     }
 
     .bat {
       position: absolute;
-      left: -100px;
-      top: var(--top);
-      width: var(--size);
-      color: #050505;
-      opacity: var(--opacity, .9);
-      filter: drop-shadow(0 0 2px rgba(255, 0, 0, .35));
-      animation: fly var(--duration) linear var(--delay) infinite;
-      will-change: transform;
+      width: 30px;
+      height: 22px;
+      fill: #d71920;
+      opacity: 0;
+      filter: drop-shadow(0 0 5px #d71920);
+      animation: fly linear infinite;
     }
 
-    .bat svg { display: block; width: 100%; }
-
-    .wing-left, .wing-right {
-      transform-box: fill-box;
-      animation-duration: .32s;
-      animation-timing-function: ease-in-out;
-      animation-iteration-count: infinite;
-      animation-direction: alternate;
+    .bat:nth-child(1) {
+      top: 15%;
+      animation-duration: 13s;
     }
 
-    .wing-left {
-      transform-origin: 100% 50%;
-      animation-name: flap-left;
+    .bat:nth-child(2) {
+      top: 32%;
+      animation-duration: 17s;
+      animation-delay: 3s;
+      width: 22px;
     }
 
-    .wing-right {
-      transform-origin: 0% 50%;
-      animation-name: flap-right;
+    .bat:nth-child(3) {
+      top: 55%;
+      animation-duration: 15s;
+      animation-delay: 6s;
+      width: 26px;
+    }
+
+    .bat:nth-child(4) {
+      top: 72%;
+      animation-duration: 19s;
+      animation-delay: 2s;
+      width: 20px;
+    }
+
+    .bat:nth-child(5) {
+      top: 85%;
+      animation-duration: 14s;
+      animation-delay: 8s;
+      width: 24px;
     }
 
     @keyframes fly {
-      0%   { transform: translate(-12vw, 0) rotate(-7deg); }
-      20%  { transform: translate(25vw, -18px) rotate(3deg); }
-      45%  { transform: translate(55vw, 22px) rotate(-3deg); }
-      70%  { transform: translate(85vw, -15px) rotate(5deg); }
-      100% { transform: translate(115vw, 8px) rotate(-4deg); }
+      0% {
+        left: -10%;
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+      }
+
+      10% {
+        opacity: 0.85;
+      }
+
+      50% {
+        transform: translateY(-35px) rotate(8deg);
+      }
+
+      90% {
+        opacity: 0.85;
+      }
+
+      100% {
+        left: 110%;
+        transform: translateY(20px) rotate(-8deg);
+        opacity: 0;
+      }
     }
 
-    @keyframes flap-left {
-      from { transform: rotate(-8deg) scaleY(1); }
-      to   { transform: rotate(38deg) scaleY(.72); }
-    }
-
-    @keyframes flap-right {
-      from { transform: rotate(8deg) scaleY(1); }
-      to   { transform: rotate(-38deg) scaleY(.72); }
-    }
-
-    /* Numero discreto nell'angolo */
-    #visitor-count {
+    .visitor-count {
       position: fixed;
-      right: 7px;
-      bottom: 5px;
-      z-index: 20;
-      color: rgba(255, 255, 255, .23);
-      font: 10px/1 monospace;
+      right: 8px;
+      bottom: 6px;
+      z-index: 10;
+      color: rgba(255, 255, 255, 0.45);
+      font: 9px/1 monospace;
       letter-spacing: 1px;
       pointer-events: none;
-      user-select: none;
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .bat { display: none; animation: none; }
+      .bat {
+        animation: none;
+        display: none;
+      }
     }
   </style>
 </head>
 
 <body>
-  <img class="poster" src="./halloween.png" alt="MÆDNESS — 31/10">
+  <img
+    class="poster"
+    src="./halloween.png"
+    alt="MÆDNESS — 31/10"
+  >
 
-  <div class="bat-layer" aria-hidden="true">
-    <div class="bat" style="--top:12%;--size:52px;--duration:11s;--delay:-8s">
-      <svg viewBox="0 0 100 55" xmlns="http://www.w3.org/2000/svg">
-        <g fill="currentColor">
-          <path class="wing-left" d="M49 27 C38 10 23 4 3 8 L14 20 L0 19 L12 33 L26 28 L39 39 L49 34Z"/>
-          <path class="wing-right" d="M51 27 C62 10 77 4 97 8 L86 20 L100 19 L88 33 L74 28 L61 39 L51 34Z"/>
-          <ellipse cx="50" cy="30" rx="5" ry="13"/>
-          <circle cx="50" cy="18" r="5"/>
-          <path d="M46 16L43 8L49 13 M54 16L57 8L51 13"/>
-        </g>
-        <circle cx="48" cy="18" r="1" fill="red"/>
-        <circle cx="52" cy="18" r="1" fill="red"/>
-      </svg>
-    </div>
+  <div class="bats" aria-hidden="true">
+    <svg class="bat" viewBox="0 0 64 40">
+      <path d="M32 15 C25 4 17 5 8 1 L12 13 1 9 5 25 17 20 23 30 29 24 32 32 35 24 41 30 47 20 59 25 63 9 52 13 56 1 C47 5 39 4 32 15Z"/>
+    </svg>
 
-    <div class="bat" style="--top:27%;--size:34px;--duration:8s;--delay:-5s;--opacity:.8">
-      <svg viewBox="0 0 100 55" xmlns="http://www.w3.org/2000/svg">
-        <g fill="currentColor">
-          <path class="wing-left" d="M49 27 C38 10 23 4 3 8 L14 20 L0 19 L12 33 L26 28 L39 39 L49 34Z"/>
-          <path class="wing-right" d="M51 27 C62 10 77 4 97 8 L86 20 L100 19 L88 33 L74 28 L61 39 L51 34Z"/>
-          <ellipse cx="50" cy="30" rx="5" ry="13"/>
-          <circle cx="50" cy="18" r="5"/>
-          <path d="M46 16L43 8L49 13 M54 16L57 8L51 13"/>
-        </g>
-        <circle cx="48" cy="18" r="1" fill="red"/>
-        <circle cx="52" cy="18" r="1" fill="red"/>
-      </svg>
-    </div>
+    <svg class="bat" viewBox="0 0 64 40">
+      <path d="M32 15 C25 4 17 5 8 1 L12 13 1 9 5 25 17 20 23 30 29 24 32 32 35 24 41 30 47 20 59 25 63 9 52 13 56 1 C47 5 39 4 32 15Z"/>
+    </svg>
 
-    <div class="bat" style="--top:43%;--size:68px;--duration:14s;--delay:-12s">
-      <svg viewBox="0 0 100 55" xmlns="http://www.w3.org/2000/svg">
-        <g fill="currentColor">
-          <path class="wing-left" d="M49 27 C38 10 23 4 3 8 L14 20 L0 19 L12 33 L26 28 L39 39 L49 34Z"/>
-          <path class="wing-right" d="M51 27 C62 10 77 4 97 8 L86 20 L100 19 L88 33 L74 28 L61 39 L51 34Z"/>
-          <ellipse cx="50" cy="30" rx="5" ry="13"/>
-          <circle cx="50" cy="18" r="5"/>
-          <path d="M46 16L43 8L49 13 M54 16L57 8L51 13"/>
-        </g>
-        <circle cx="48" cy="18" r="1" fill="red"/>
-        <circle cx="52" cy="18" r="1" fill="red"/>
-      </svg>
-    </div>
+    <svg class="bat" viewBox="0 0 64 40">
+      <path d="M32 15 C25 4 17 5 8 1 L12 13 1 9 5 25 17 20 23 30 29 24 32 32 35 24 41 30 47 20 59 25 63 9 52 13 56 1 C47 5 39 4 32 15Z"/>
+    </svg>
 
-    <div class="bat" style="--top:57%;--size:40px;--duration:10s;--delay:-3s;--opacity:.75">
-      <svg viewBox="0 0 100 55" xmlns="http://www.w3.org/2000/svg">
-        <g fill="currentColor">
-          <path class="wing-left" d="M49 27 C38 10 23 4 3 8 L14 20 L0 19 L12 33 L26 28 L39 39 L49 34Z"/>
-          <path class="wing-right" d="M51 27 C62 10 77 4 97 8 L86 20 L100 19 L88 33 L74 28 L61 39 L51 34Z"/>
-          <ellipse cx="50" cy="30" rx="5" ry="13"/>
-          <circle cx="50" cy="18" r="5"/>
-          <path d="M46 16L43 8L49 13 M54 16L57 8L51 13"/>
-        </g>
-        <circle cx="48" cy="18" r="1" fill="red"/>
-        <circle cx="52" cy="18" r="1" fill="red"/>
-      </svg>
-    </div>
+    <svg class="bat" viewBox="0 0 64 40">
+      <path d="M32 15 C25 4 17 5 8 1 L12 13 1 9 5 25 17 20 23 30 29 24 32 32 35 24 41 30 47 20 59 25 63 9 52 13 56 1 C47 5 39 4 32 15Z"/>
+    </svg>
 
-    <div class="bat" style="--top:70%;--size:58px;--duration:12s;--delay:-9s">
-      <svg viewBox="0 0 100 55" xmlns="http://www.w3.org/2000/svg">
-        <g fill="currentColor">
-          <path class="wing-left" d="M49 27 C38 10 23 4 3 8 L14 20 L0 19 L12 33 L26 28 L39 39 L49 34Z"/>
-          <path class="wing-right" d="M51 27 C62 10 77 4 97 8 L86 20 L100 19 L88 33 L74 28 L61 39 L51 34Z"/>
-          <ellipse cx="50" cy="30" rx="5" ry="13"/>
-          <circle cx="50" cy="18" r="5"/>
-          <path d="M46 16L43 8L49 13 M54 16L57 8L51 13"/>
-        </g>
-        <circle cx="48" cy="18" r="1" fill="red"/>
-        <circle cx="52" cy="18" r="1" fill="red"/>
-      </svg>
-    </div>
-
-    <div class="bat" style="--top:83%;--size:30px;--duration:9s;--delay:-6s;--opacity:.8">
-      <svg viewBox="0 0 100 55" xmlns="http://www.w3.org/2000/svg">
-        <g fill="currentColor">
-          <path class="wing-left" d="M49 27 C38 10 23 4 3 8 L14 20 L0 19 L12 33 L26 28 L39 39 L49 34Z"/>
-          <path class="wing-right" d="M51 27 C62 10 77 4 97 8 L86 20 L100 19 L88 33 L74 28 L61 39 L51 34Z"/>
-          <ellipse cx="50" cy="30" rx="5" ry="13"/>
-          <circle cx="50" cy="18" r="5"/>
-          <path d="M46 16L43 8L49 13 M54 16L57 8L51 13"/>
-        </g>
-        <circle cx="48" cy="18" r="1" fill="red"/>
-        <circle cx="52" cy="18" r="1" fill="red"/>
-      </svg>
-    </div>
-
-    <div class="bat" style="--top:35%;--size:25px;--duration:7s;--delay:-1s;--opacity:.7">
-      <svg viewBox="0 0 100 55" xmlns="http://www.w3.org/2000/svg">
-        <g fill="currentColor">
-          <path class="wing-left" d="M49 27 C38 10 23 4 3 8 L14 20 L0 19 L12 33 L26 28 L39 39 L49 34Z"/>
-          <path class="wing-right" d="M51 27 C62 10 77 4 97 8 L86 20 L100 19 L88 33 L74 28 L61 39 L51 34Z"/>
-          <ellipse cx="50" cy="30" rx="5" ry="13"/>
-          <circle cx="50" cy="18" r="5"/>
-          <path d="M46 16L43 8L49 13 M54 16L57 8L51 13"/>
-        </g>
-        <circle cx="48" cy="18" r="1" fill="red"/>
-        <circle cx="52" cy="18" r="1" fill="red"/>
-      </svg>
-    </div>
+    <svg class="bat" viewBox="0 0 64 40">
+      <path d="M32 15 C25 4 17 5 8 1 L12 13 1 9 5 25 17 20 23 30 29 24 32 32 35 24 41 30 47 20 59 25 63 9 52 13 56 1 C47 5 39 4 32 15Z"/>
+    </svg>
   </div>
 
-  <span id="visitor-count" aria-label="Contatore visitatori"></span>
+  <div class="visitor-count" id="visitorCount"></div>
 
   <script>
-    /*
-      CONTATORE DA COLLEGARE:
-      GitHub Pages non conserva un totale condiviso.
-      Qui non inserire chiavi API private nel codice pubblico.
-      Quando il servizio remoto sarà configurato, questo spazio
-      aggiornerà il numero nell'angolo senza modificare la grafica.
-    */
-    const counter = document.getElementById("visitor-count");
+    const counter = document.getElementById("visitorCount");
 
-    // Per ora non mostra un totale inventato.
-    counter.textContent = "";
+    // Chiave dedicata al sito Halloween MÆDNESS.
+    // Non riutilizzare questa chiave in altri progetti.
+    const counterUrl =
+      "https://countapi.mileshilliard.com/api/v1/hit/maedness_halloween_31_10_2026_a83f";
+
+    // Evita di contare più volte lo stesso caricamento
+    // se lo script viene eseguito più volte nella pagina.
+    let counterStarted = false;
+
+    async function updateVisitorCount() {
+      if (counterStarted) return;
+      counterStarted = true;
+
+      try {
+        const response = await fetch(counterUrl);
+        if (!response.ok) throw new Error("Counter unavailable");
+
+        const data = await response.json();
+        if (data.value !== undefined) {
+          counter.textContent = data.value;
+        }
+      } catch (error) {
+        // Se il servizio non risponde, il sito resta visibile.
+        counter.textContent = "";
+      }
+    }
+
+    updateVisitorCount();
   </script>
 </body>
 </html>
