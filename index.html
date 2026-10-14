@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="it">
 <head>
@@ -9,12 +10,9 @@
   <title>MÆDNESS® — 31/10</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
-    html,
-    body {
+    html, body {
       margin: 0;
       width: 100%;
       min-height: 100%;
@@ -37,7 +35,6 @@
       object-position: center;
     }
 
-    /* Livello animazioni */
     .bat-layer {
       position: fixed;
       inset: 0;
@@ -51,184 +48,187 @@
       left: -100px;
       top: var(--top);
       width: var(--size);
-      height: auto;
       color: #050505;
-      opacity: var(--opacity, 0.95);
-      filter: drop-shadow(0 0 2px rgba(255, 0, 0, 0.35));
+      opacity: var(--opacity, .9);
+      filter: drop-shadow(0 0 2px rgba(255, 0, 0, .35));
       animation: fly var(--duration) linear var(--delay) infinite;
       will-change: transform;
     }
 
-    .bat svg {
-      display: block;
-      width: 100%;
-      height: auto;
-      overflow: visible;
+    .bat svg { display: block; width: 100%; }
+
+    .wing-left, .wing-right {
+      transform-box: fill-box;
+      animation-duration: .32s;
+      animation-timing-function: ease-in-out;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
     }
 
     .wing-left {
-      transform-box: fill-box;
       transform-origin: 100% 50%;
-      animation: flap-left 0.32s ease-in-out infinite alternate;
+      animation-name: flap-left;
     }
 
     .wing-right {
-      transform-box: fill-box;
       transform-origin: 0% 50%;
-      animation: flap-right 0.32s ease-in-out infinite alternate;
+      animation-name: flap-right;
     }
 
     @keyframes fly {
-      0% {
-        transform: translate3d(-12vw, 0, 0) rotate(-7deg);
-      }
-      20% {
-        transform: translate3d(25vw, -18px, 0) rotate(3deg);
-      }
-      45% {
-        transform: translate3d(55vw, 22px, 0) rotate(-3deg);
-      }
-      70% {
-        transform: translate3d(85vw, -15px, 0) rotate(5deg);
-      }
-      100% {
-        transform: translate3d(115vw, 8px, 0) rotate(-4deg);
-      }
+      0%   { transform: translate(-12vw, 0) rotate(-7deg); }
+      20%  { transform: translate(25vw, -18px) rotate(3deg); }
+      45%  { transform: translate(55vw, 22px) rotate(-3deg); }
+      70%  { transform: translate(85vw, -15px) rotate(5deg); }
+      100% { transform: translate(115vw, 8px) rotate(-4deg); }
     }
 
     @keyframes flap-left {
       from { transform: rotate(-8deg) scaleY(1); }
-      to   { transform: rotate(38deg) scaleY(0.72); }
+      to   { transform: rotate(38deg) scaleY(.72); }
     }
 
     @keyframes flap-right {
       from { transform: rotate(8deg) scaleY(1); }
-      to   { transform: rotate(-38deg) scaleY(0.72); }
+      to   { transform: rotate(-38deg) scaleY(.72); }
+    }
+
+    /* Numero discreto nell'angolo */
+    #visitor-count {
+      position: fixed;
+      right: 7px;
+      bottom: 5px;
+      z-index: 20;
+      color: rgba(255, 255, 255, .23);
+      font: 10px/1 monospace;
+      letter-spacing: 1px;
+      pointer-events: none;
+      user-select: none;
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .bat {
-        animation: none;
-        display: none;
-      }
+      .bat { display: none; animation: none; }
     }
   </style>
 </head>
 
 <body>
-  <img
-    class="poster"
-    src="./halloween.png"
-    alt="MÆDNESS — 31/10"
-  >
+  <img class="poster" src="./halloween.png" alt="MÆDNESS — 31/10">
 
   <div class="bat-layer" aria-hidden="true">
-
-    <!-- Pipistrello 1 -->
-    <div class="bat" style="--top:12%;--size:52px;--duration:11s;--delay:-8s;--opacity:.9">
+    <div class="bat" style="--top:12%;--size:52px;--duration:11s;--delay:-8s">
       <svg viewBox="0 0 100 55" xmlns="http://www.w3.org/2000/svg">
         <g fill="currentColor">
-          <path class="wing-left" d="M49 27 C38 10 23 4 3 8 L14 20 L0 19 L12 33 L26 28 L39 39 L49 34 Z"/>
-          <path class="wing-right" d="M51 27 C62 10 77 4 97 8 L86 20 L100 19 L88 33 L74 28 L61 39 L51 34 Z"/>
+          <path class="wing-left" d="M49 27 C38 10 23 4 3 8 L14 20 L0 19 L12 33 L26 28 L39 39 L49 34Z"/>
+          <path class="wing-right" d="M51 27 C62 10 77 4 97 8 L86 20 L100 19 L88 33 L74 28 L61 39 L51 34Z"/>
           <ellipse cx="50" cy="30" rx="5" ry="13"/>
           <circle cx="50" cy="18" r="5"/>
-          <path d="M46 16 L43 8 L49 13 M54 16 L57 8 L51 13"/>
+          <path d="M46 16L43 8L49 13 M54 16L57 8L51 13"/>
         </g>
-        <circle cx="48" cy="18" r="1" fill="#ff0000"/>
-        <circle cx="52" cy="18" r="1" fill="#ff0000"/>
+        <circle cx="48" cy="18" r="1" fill="red"/>
+        <circle cx="52" cy="18" r="1" fill="red"/>
       </svg>
     </div>
 
-    <!-- Pipistrello 2 -->
     <div class="bat" style="--top:27%;--size:34px;--duration:8s;--delay:-5s;--opacity:.8">
       <svg viewBox="0 0 100 55" xmlns="http://www.w3.org/2000/svg">
         <g fill="currentColor">
-          <path class="wing-left" d="M49 27 C38 10 23 4 3 8 L14 20 L0 19 L12 33 L26 28 L39 39 L49 34 Z"/>
-          <path class="wing-right" d="M51 27 C62 10 77 4 97 8 L86 20 L100 19 L88 33 L74 28 L61 39 L51 34 Z"/>
+          <path class="wing-left" d="M49 27 C38 10 23 4 3 8 L14 20 L0 19 L12 33 L26 28 L39 39 L49 34Z"/>
+          <path class="wing-right" d="M51 27 C62 10 77 4 97 8 L86 20 L100 19 L88 33 L74 28 L61 39 L51 34Z"/>
           <ellipse cx="50" cy="30" rx="5" ry="13"/>
           <circle cx="50" cy="18" r="5"/>
-          <path d="M46 16 L43 8 L49 13 M54 16 L57 8 L51 13"/>
+          <path d="M46 16L43 8L49 13 M54 16L57 8L51 13"/>
         </g>
-        <circle cx="48" cy="18" r="1" fill="#ff0000"/>
-        <circle cx="52" cy="18" r="1" fill="#ff0000"/>
+        <circle cx="48" cy="18" r="1" fill="red"/>
+        <circle cx="52" cy="18" r="1" fill="red"/>
       </svg>
     </div>
 
-    <!-- Pipistrello 3 -->
-    <div class="bat" style="--top:43%;--size:68px;--duration:14s;--delay:-12s;--opacity:.95">
+    <div class="bat" style="--top:43%;--size:68px;--duration:14s;--delay:-12s">
       <svg viewBox="0 0 100 55" xmlns="http://www.w3.org/2000/svg">
         <g fill="currentColor">
-          <path class="wing-left" d="M49 27 C38 10 23 4 3 8 L14 20 L0 19 L12 33 L26 28 L39 39 L49 34 Z"/>
-          <path class="wing-right" d="M51 27 C62 10 77 4 97 8 L86 20 L100 19 L88 33 L74 28 L61 39 L51 34 Z"/>
+          <path class="wing-left" d="M49 27 C38 10 23 4 3 8 L14 20 L0 19 L12 33 L26 28 L39 39 L49 34Z"/>
+          <path class="wing-right" d="M51 27 C62 10 77 4 97 8 L86 20 L100 19 L88 33 L74 28 L61 39 L51 34Z"/>
           <ellipse cx="50" cy="30" rx="5" ry="13"/>
           <circle cx="50" cy="18" r="5"/>
-          <path d="M46 16 L43 8 L49 13 M54 16 L57 8 L51 13"/>
+          <path d="M46 16L43 8L49 13 M54 16L57 8L51 13"/>
         </g>
-        <circle cx="48" cy="18" r="1" fill="#ff0000"/>
-        <circle cx="52" cy="18" r="1" fill="#ff0000"/>
+        <circle cx="48" cy="18" r="1" fill="red"/>
+        <circle cx="52" cy="18" r="1" fill="red"/>
       </svg>
     </div>
 
-    <!-- Pipistrello 4 -->
     <div class="bat" style="--top:57%;--size:40px;--duration:10s;--delay:-3s;--opacity:.75">
       <svg viewBox="0 0 100 55" xmlns="http://www.w3.org/2000/svg">
         <g fill="currentColor">
-          <path class="wing-left" d="M49 27 C38 10 23 4 3 8 L14 20 L0 19 L12 33 L26 28 L39 39 L49 34 Z"/>
-          <path class="wing-right" d="M51 27 C62 10 77 4 97 8 L86 20 L100 19 L88 33 L74 28 L61 39 L51 34 Z"/>
+          <path class="wing-left" d="M49 27 C38 10 23 4 3 8 L14 20 L0 19 L12 33 L26 28 L39 39 L49 34Z"/>
+          <path class="wing-right" d="M51 27 C62 10 77 4 97 8 L86 20 L100 19 L88 33 L74 28 L61 39 L51 34Z"/>
           <ellipse cx="50" cy="30" rx="5" ry="13"/>
           <circle cx="50" cy="18" r="5"/>
-          <path d="M46 16 L43 8 L49 13 M54 16 L57 8 L51 13"/>
+          <path d="M46 16L43 8L49 13 M54 16L57 8L51 13"/>
         </g>
-        <circle cx="48" cy="18" r="1" fill="#ff0000"/>
-        <circle cx="52" cy="18" r="1" fill="#ff0000"/>
+        <circle cx="48" cy="18" r="1" fill="red"/>
+        <circle cx="52" cy="18" r="1" fill="red"/>
       </svg>
     </div>
 
-    <!-- Pipistrello 5 -->
-    <div class="bat" style="--top:70%;--size:58px;--duration:12s;--delay:-9s;--opacity:.9">
+    <div class="bat" style="--top:70%;--size:58px;--duration:12s;--delay:-9s">
       <svg viewBox="0 0 100 55" xmlns="http://www.w3.org/2000/svg">
         <g fill="currentColor">
-          <path class="wing-left" d="M49 27 C38 10 23 4 3 8 L14 20 L0 19 L12 33 L26 28 L39 39 L49 34 Z"/>
-          <path class="wing-right" d="M51 27 C62 10 77 4 97 8 L86 20 L100 19 L88 33 L74 28 L61 39 L51 34 Z"/>
+          <path class="wing-left" d="M49 27 C38 10 23 4 3 8 L14 20 L0 19 L12 33 L26 28 L39 39 L49 34Z"/>
+          <path class="wing-right" d="M51 27 C62 10 77 4 97 8 L86 20 L100 19 L88 33 L74 28 L61 39 L51 34Z"/>
           <ellipse cx="50" cy="30" rx="5" ry="13"/>
           <circle cx="50" cy="18" r="5"/>
-          <path d="M46 16 L43 8 L49 13 M54 16 L57 8 L51 13"/>
+          <path d="M46 16L43 8L49 13 M54 16L57 8L51 13"/>
         </g>
-        <circle cx="48" cy="18" r="1" fill="#ff0000"/>
-        <circle cx="52" cy="18" r="1" fill="#ff0000"/>
+        <circle cx="48" cy="18" r="1" fill="red"/>
+        <circle cx="52" cy="18" r="1" fill="red"/>
       </svg>
     </div>
 
-    <!-- Pipistrello 6 -->
     <div class="bat" style="--top:83%;--size:30px;--duration:9s;--delay:-6s;--opacity:.8">
       <svg viewBox="0 0 100 55" xmlns="http://www.w3.org/2000/svg">
         <g fill="currentColor">
-          <path class="wing-left" d="M49 27 C38 10 23 4 3 8 L14 20 L0 19 L12 33 L26 28 L39 39 L49 34 Z"/>
-          <path class="wing-right" d="M51 27 C62 10 77 4 97 8 L86 20 L100 19 L88 33 L74 28 L61 39 L51 34 Z"/>
+          <path class="wing-left" d="M49 27 C38 10 23 4 3 8 L14 20 L0 19 L12 33 L26 28 L39 39 L49 34Z"/>
+          <path class="wing-right" d="M51 27 C62 10 77 4 97 8 L86 20 L100 19 L88 33 L74 28 L61 39 L51 34Z"/>
           <ellipse cx="50" cy="30" rx="5" ry="13"/>
           <circle cx="50" cy="18" r="5"/>
-          <path d="M46 16 L43 8 L49 13 M54 16 L57 8 L51 13"/>
+          <path d="M46 16L43 8L49 13 M54 16L57 8L51 13"/>
         </g>
-        <circle cx="48" cy="18" r="1" fill="#ff0000"/>
-        <circle cx="52" cy="18" r="1" fill="#ff0000"/>
+        <circle cx="48" cy="18" r="1" fill="red"/>
+        <circle cx="52" cy="18" r="1" fill="red"/>
       </svg>
     </div>
 
-    <!-- Pipistrello 7 -->
     <div class="bat" style="--top:35%;--size:25px;--duration:7s;--delay:-1s;--opacity:.7">
       <svg viewBox="0 0 100 55" xmlns="http://www.w3.org/2000/svg">
         <g fill="currentColor">
-          <path class="wing-left" d="M49 27 C38 10 23 4 3 8 L14 20 L0 19 L12 33 L26 28 L39 39 L49 34 Z"/>
-          <path class="wing-right" d="M51 27 C62 10 77 4 97 8 L86 20 L100 19 L88 33 L74 28 L61 39 L51 34 Z"/>
+          <path class="wing-left" d="M49 27 C38 10 23 4 3 8 L14 20 L0 19 L12 33 L26 28 L39 39 L49 34Z"/>
+          <path class="wing-right" d="M51 27 C62 10 77 4 97 8 L86 20 L100 19 L88 33 L74 28 L61 39 L51 34Z"/>
           <ellipse cx="50" cy="30" rx="5" ry="13"/>
           <circle cx="50" cy="18" r="5"/>
-          <path d="M46 16 L43 8 L49 13 M54 16 L57 8 L51 13"/>
+          <path d="M46 16L43 8L49 13 M54 16L57 8L51 13"/>
         </g>
-        <circle cx="48" cy="18" r="1" fill="#ff0000"/>
-        <circle cx="52" cy="18" r="1" fill="#ff0000"/>
+        <circle cx="48" cy="18" r="1" fill="red"/>
+        <circle cx="52" cy="18" r="1" fill="red"/>
       </svg>
     </div>
-
   </div>
+
+  <span id="visitor-count" aria-label="Contatore visitatori"></span>
+
+  <script>
+    /*
+      CONTATORE DA COLLEGARE:
+      GitHub Pages non conserva un totale condiviso.
+      Qui non inserire chiavi API private nel codice pubblico.
+      Quando il servizio remoto sarà configurato, questo spazio
+      aggiornerà il numero nell'angolo senza modificare la grafica.
+    */
+    const counter = document.getElementById("visitor-count");
+
+    // Per ora non mostra un totale inventato.
+    counter.textContent = "";
+  </script>
 </body>
 </html>
